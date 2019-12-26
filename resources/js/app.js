@@ -8,8 +8,15 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import { Form, HasError, AlertError } from 'vform';
+import VueProgressBar from 'vue-progressbar'
 import moment from 'moment';
 window.form = Form;
+
+Vue.use(VueProgressBar, {
+    color: 'rgb(143, 255, 199)',
+    failedColor: 'red',
+    height: '3px'
+})
 
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
