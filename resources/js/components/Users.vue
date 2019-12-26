@@ -126,6 +126,11 @@ export default {
     createUser() {
       this.$Progress.start()
       this.form.post("/api/user")
+      $("#exampleModal").modal("hide")
+      toast.fire({
+        icon: "success",
+        title: "User Created Successfully"
+      })
       this.$Progress.finish()
     },
     loadUsers() {
