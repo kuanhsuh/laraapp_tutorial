@@ -6,7 +6,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Users Table</h3>
                         <div class="card-tools">
-                            <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Add New
+                            <button class="btn btn-success" @click="newModal">Add New
                                 <i class="fas fa-user-plus"></i>
                             </button>
                         </div>
@@ -35,7 +35,7 @@
                                         <span class="tag tag-success">Approved</span>
                                     </td> -->
                                     <td>
-                                        <a href="#">
+                                        <a href="#" @click="editModal(user)">
                                             <i class="fa fa-edit blue"></i>
                                         </a> |
                                         <a href="#" @click="deleteUser(user.id)">
@@ -123,6 +123,15 @@ export default {
     }
   },
   methods: {
+    editModal() {
+      this.form.reset()
+      $("#exampleModal").modal("show")
+      this.form.fill(user)
+    },
+    newModal() {
+      this.form.reset()
+      $("#exampleModal").modal("show")
+    },
     deleteUser(id) {
       swal
         .fire({
