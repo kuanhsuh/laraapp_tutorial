@@ -57,13 +57,14 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add New</h5>
+                        <h5 v-show="!editMode" class="modal-title" id="exampleModalLabel">Add New</h5>
+                        <h5 v-show="editMode" class="modal-title" id="exampleModalLabel">Update User's Info</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form @submit.prevent="createUser">
+                        <form @submit.prevent="editMode ? updateUser() : createUser()">
                             <div class="form-group">
                                 <input v-model="form.name" type="text" name="name" id="name" class="form-control" :class="{ 'is-invalid': form.errors.has('name') }" placeholder="Name">
                                 <has-error :form="form" field="name"></has-error>
@@ -93,7 +94,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button v-show="editMode" type="submit" class="btn btn-success">Update</button>
+                                <button v-show="!editMode" type="submit" class="btn btn-primary">Create</button>
                             </div>
                         </form>
                     </div>
@@ -111,6 +113,7 @@ import Form from "vform"
 export default {
   data() {
     return {
+      editMode: false,
       users: [],
       form: new Form({
         name: "",
@@ -123,12 +126,17 @@ export default {
     }
   },
   methods: {
-    editModal() {
+    updateUser() {
+      console.log("test")
+    },
+    editModal(user) {
+      this.editMode = true
       this.form.reset()
       $("#exampleModal").modal("show")
       this.form.fill(user)
     },
     newModal() {
+      this.editMode = false
       this.form.reset()
       $("#exampleModal").modal("show")
     },
