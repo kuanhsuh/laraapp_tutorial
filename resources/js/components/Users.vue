@@ -116,6 +116,7 @@ export default {
       editMode: false,
       users: [],
       form: new Form({
+        id: "",
         name: "",
         email: "",
         password: "",
@@ -127,7 +128,20 @@ export default {
   },
   methods: {
     updateUser() {
+      this.$Progress.start()
+
       console.log("test")
+      this.form
+        .put("api/user/" + this.form.id)
+        .then(() => {
+          $("#exampleModal").modal("hide")
+          swal.fire("Updated!", "Information has been updated!", "success")
+          this.$Progress.finish()
+          Fire.$emit("AfterCreate")
+        })
+        .catch(() => {
+          this.$Progress.fail()
+        })
     },
     editModal(user) {
       this.editMode = true
