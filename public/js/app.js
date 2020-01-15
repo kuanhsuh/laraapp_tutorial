@@ -2176,6 +2176,142 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2200,6 +2336,9 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    updateInfo: function updateInfo() {
+      this.form.put("api/profile/").then(function () {})["catch"](function () {});
+    },
     updateProfile: function updateProfile(e) {
       var _this2 = this;
 
@@ -2228,6 +2367,106 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -61178,7 +61417,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "email", placeholder: "Name" },
+                      attrs: { type: "text", placeholder: "Name" },
                       domProps: { value: _vm.form.name },
                       on: {
                         input: function($event) {
@@ -61256,9 +61495,15 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn btn-success",
-                        attrs: { type: "submit" }
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.updateInfo($event)
+                          }
+                        }
                       },
-                      [_vm._v("Update" + _vm._s(_vm.form.email))]
+                      [_vm._v("Update " + _vm._s(_vm.form.email))]
                     )
                   ])
                 ])
@@ -61408,7 +61653,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            "\n                            Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone from bacon lovers to Charlie Sheen fans.\n                        "
+            "\n              Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone from bacon lovers to Charlie Sheen fans.\n            "
           )
         ]),
         _vm._v(" "),
@@ -61430,7 +61675,7 @@ var staticRenderFns = [
               { staticClass: "link-black text-sm", attrs: { href: "#" } },
               [
                 _c("i", { staticClass: "far fa-comments mr-1" }),
-                _vm._v(" Comments (5)\n                                ")
+                _vm._v(" Comments (5)\n                ")
               ]
             )
           ])
@@ -61466,7 +61711,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            "\n                            Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone from bacon lovers to Charlie Sheen fans.\n                        "
+            "\n              Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone from bacon lovers to Charlie Sheen fans.\n            "
           )
         ]),
         _vm._v(" "),
@@ -61565,7 +61810,7 @@ var staticRenderFns = [
               { staticClass: "link-black text-sm", attrs: { href: "#" } },
               [
                 _c("i", { staticClass: "far fa-comments mr-1" }),
-                _vm._v(" Comments (5)\n                                ")
+                _vm._v(" Comments (5)\n                ")
               ]
             )
           ])
@@ -61653,7 +61898,7 @@ var render = function() {
                 "button",
                 { staticClass: "btn btn-success", on: { click: _vm.newModal } },
                 [
-                  _vm._v("Add New\n                            "),
+                  _vm._v("Add New\n              "),
                   _c("i", { staticClass: "fas fa-user-plus" })
                 ]
               )
@@ -61693,7 +61938,7 @@ var render = function() {
                         },
                         [_c("i", { staticClass: "fa fa-edit blue" })]
                       ),
-                      _vm._v(" |\n                                    "),
+                      _vm._v(" |\n                  "),
                       _c(
                         "a",
                         {
