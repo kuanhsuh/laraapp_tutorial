@@ -2337,19 +2337,35 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     updateInfo: function updateInfo() {
-      this.form.put("api/profile/").then(function () {})["catch"](function () {});
+      var _this2 = this;
+
+      this.$Progress.start();
+      this.form.put("api/profile/").then(function () {
+        _this2.$Progress.finish();
+      })["catch"](function () {
+        _this2.$Progress.fail();
+      });
     },
     updateProfile: function updateProfile(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       var file = e.target.files[0];
       var reader = new FileReader();
 
-      reader.onloadend = function (file) {
-        _this2.form.photo = reader.result;
-      };
+      if (file["size"] < 2097152) {
+        reader.onloadend = function (file) {
+          // console.log("RESULT", reader.result);
+          _this3.form.photo = reader.result;
+        };
 
-      reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
+      } else {
+        swal.fire({
+          type: "error",
+          title: "Oops",
+          text: "You are uploading a large file"
+        });
+      }
     }
   }
 });

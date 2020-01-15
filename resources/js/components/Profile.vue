@@ -380,18 +380,34 @@ export default {
   },
   methods: {
     updateInfo() {
+      this.$Progress.start();
       this.form
         .put("api/profile/")
-        .then(() => {})
-        .catch(() => {});
+        .then(() => {
+          this.$Progress.finish();
+        })
+        .catch(() => {
+          this.$Progress.fail();
+        });
     },
     updateProfile(e) {
       let file = e.target.files[0];
-      var reader = new FileReader();
-      reader.onloadend = file => {
-        this.form.photo = reader.result;
-      };
-      reader.readAsDataURL(file);
+      let reader = new FileReader();
+
+      if (file["size"] < 2097152) {
+        reader.onloadend = file => {
+          // console.log("RESULT", reader.result);
+          this.form.photo = reader.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        swal.fire({
+          type: "error",
+
+          title: "Oops",
+          text: "You are uploading a large file"
+        });
+      }
     }
   }
 };
