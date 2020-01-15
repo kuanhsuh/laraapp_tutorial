@@ -327,13 +327,14 @@
                 <label
                   for="inputName"
                   class="col-sm-2 col-form-label"
-                >Passport(if empty if not changing)</label>
+                >Passpord(if empty if not changing)</label>
                 <div class="col-sm-10">
                   <input
-                    type="email"
+                    v-model="form.password"
+                    id="password"
+                    type="password"
+                    name="password"
                     class="form-control"
-                    id="inputName"
-                    placeholder="Name"
                   >
                 </div>
               </div>
