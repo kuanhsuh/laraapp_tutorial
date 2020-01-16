@@ -14,7 +14,7 @@
           <div class="widget-user-image">
             <img
               class="img-circle"
-              src=""
+              :src="getProfilePhoto()"
               alt="User Avatar"
             >
           </div>
@@ -405,6 +405,10 @@ export default {
         .catch(() => {
           this.$Progress.fail();
         });
+    },
+    getProfilePhoto() {
+      let prefix = this.form.photo.match(/\//) ? "" : "/img/profile/";
+      return prefix + this.form.photo;
     },
     updateProfile(e) {
       let file = e.target.files[0];
