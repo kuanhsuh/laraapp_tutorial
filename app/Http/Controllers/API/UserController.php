@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
@@ -59,23 +60,27 @@ class UserController extends Controller
         return auth('api')->user();
     }
 
-    public function updateProfile(Request $request )
+    public function updateProfile(Request $request)
     {
 
         $user =  auth('api')->user();
         $this->validate($request, [
             'name' => 'required|string|max:191',
-            'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
+            'email' => 'required|string|email|max:191|unique:users,email,' . $user->id,
             'password' => 'sometimes|required|min:6',
         ]);
         $currentPhoto = $user->photo;
-        if($request->photo != $currentPhoto) {
+        if ($request->photo != $currentPhoto) {
             $name = time() . '.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
 
-            Image::make($request->photo)->save(public_path('img/profile/').$name);
+            Image::make($request->photo)->save(public_path('img/profile/') . $name);
 
-            $request->merge(['photo' => $name ]);
+            $request->merge(['photo' => $name]);
             // dd($request);
+        }
+
+        if (!empty($request->password)) {
+            $request->merge(['password' => Hash::make($request['password'])]);
         }
         $user->update($request->all());
         return ["message" => "success"];
@@ -104,7 +109,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $this->validate($request, [
             'name' => 'required|string|max:191',
-            'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
+            'email' => 'required|string|email|max:191|unique:users,email,' . $user->id,
             'password' => 'sometimes|min:6',
         ]);
 

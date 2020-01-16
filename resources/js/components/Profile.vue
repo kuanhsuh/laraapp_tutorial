@@ -279,8 +279,13 @@
                     type="text"
                     class="form-control"
                     v-model="form.name"
+                    :class="{ 'is-invalid': form.errors.has('name') }"
                     placeholder="Name"
                   >
+                  <has-error
+                    :form="form"
+                    field="name"
+                  ></has-error>
                 </div>
               </div>
               <div class="form-group row">
@@ -293,8 +298,13 @@
                     type="email"
                     class="form-control"
                     v-model="form.email"
+                    :class="{ 'is-invalid': form.errors.has('email') }"
                     placeholder="Email"
                   >
+                  <has-error
+                    :form="form"
+                    field="email"
+                  ></has-error>
                 </div>
               </div>
               <div class="form-group row">
@@ -334,8 +344,13 @@
                     id="password"
                     type="password"
                     name="password"
+                    :class="{ 'is-invalid': form.errors.has('password') }"
                     class="form-control"
                   >
+                  <has-error
+                    :form="form"
+                    field="password"
+                  ></has-error>
                 </div>
               </div>
               <div class="form-group row">
