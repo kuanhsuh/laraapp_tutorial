@@ -67,6 +67,9 @@
       </div>
     </div>
 
+<div v-if="!$gate.isAdmin()">
+  <not-found></not-found>
+</div>
     <!-- Modal -->
     <div
       class="modal fade"
@@ -212,6 +215,8 @@
 
 <script>
 import Form from "vform";
+import NotFound from './NotFound'
+
 
 export default {
   data() {
@@ -228,6 +233,9 @@ export default {
         photo: ""
       })
     };
+  },
+  components:{
+      'not-found':NotFound
   },
   methods: {
     updateUser() {
