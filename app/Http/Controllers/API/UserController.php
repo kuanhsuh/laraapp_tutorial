@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::latest()->paginate(10);
+        if (Gate::allows('isAdmin') || Gate::allows('isAuthor')) {
+            // The current user can edit settings
+            return User::latest()->paginate(10);
+        }
     }
 
     /**

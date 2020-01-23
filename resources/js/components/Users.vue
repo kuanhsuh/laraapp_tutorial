@@ -2,7 +2,7 @@
   <div class="container">
     <div
       class="row mt-5"
-      v-if="$gate.isAdmin()"
+      v-if="$gate.isAdminOrAuthor()"
     >
       <div class="col-md-12">
         <div class="card">
@@ -67,9 +67,9 @@
       </div>
     </div>
 
-<div v-if="!$gate.isAdmin()">
-  <not-found></not-found>
-</div>
+    <div v-if="!$gate.isAdminOrAuthor()">
+      <not-found></not-found>
+    </div>
     <!-- Modal -->
     <div
       class="modal fade"
@@ -215,8 +215,7 @@
 
 <script>
 import Form from "vform";
-import NotFound from './NotFound'
-
+import NotFound from "./NotFound";
 
 export default {
   data() {
@@ -234,14 +233,13 @@ export default {
       })
     };
   },
-  components:{
-      'not-found':NotFound
+  components: {
+    "not-found": NotFound
   },
   methods: {
     updateUser() {
       this.$Progress.start();
 
-      console.log("test");
       this.form
         .put("api/user/" + this.form.id)
         .then(() => {
@@ -303,7 +301,8 @@ export default {
       });
     },
     loadUsers() {
-      if (this.$gate.isAdmin()) {
+      console.log(this.$gate);
+      if (this.$gate.isAdminOrAuthor()) {
         axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     }
