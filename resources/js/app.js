@@ -60,6 +60,10 @@ let routes = [
     {
         path: "/developer",
         component: require("./components/Developer.vue").default
+    },
+    {
+        path: "*",
+        component: require("./components/NotFound.vue").default
     }
 ];
 
