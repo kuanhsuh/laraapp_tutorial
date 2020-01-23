@@ -2661,6 +2661,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2768,6 +2784,12 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this6 = this;
 
+    Fire.$on("searching", function () {
+      var query = _this6.$parent.search;
+      axios.get("api/finduser?q=" + query).then(function (data) {
+        _this6.users = data.data;
+      })["catch"](function () {});
+    });
     this.loadUsers();
     Fire.$on("AfterCreate", function () {
       _this6.loadUsers();
@@ -62910,9 +62932,7 @@ var render = function() {
                       on: { click: _vm.newModal }
                     },
                     [
-                      _vm._v(
-                        "\n                            Add New\n                            "
-                      ),
+                      _vm._v("\n              Add New\n              "),
                       _c("i", { staticClass: "fas fa-user-plus" })
                     ]
                   )
@@ -62952,9 +62972,7 @@ var render = function() {
                             },
                             [_c("i", { staticClass: "fa fa-edit blue" })]
                           ),
-                          _vm._v(
-                            "\n                                    |\n                                    "
-                          ),
+                          _vm._v("\n                  |\n                  "),
                           _c(
                             "a",
                             {
@@ -63029,11 +63047,7 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "exampleModalLabel" }
                   },
-                  [
-                    _vm._v(
-                      "\n                        Add New\n                    "
-                    )
-                  ]
+                  [_vm._v("\n            Add New\n          ")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -63050,11 +63064,7 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "exampleModalLabel" }
                   },
-                  [
-                    _vm._v(
-                      "\n                        Update User's Info\n                    "
-                    )
-                  ]
+                  [_vm._v("\n            Update User's Info\n          ")]
                 ),
                 _vm._v(" "),
                 _vm._m(1)
@@ -63313,11 +63323,7 @@ var render = function() {
                           staticClass: "btn btn-secondary",
                           attrs: { type: "button", "data-dismiss": "modal" }
                         },
-                        [
-                          _vm._v(
-                            "\n                                Close\n                            "
-                          )
-                        ]
+                        [_vm._v("\n                Close\n              ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -63334,11 +63340,7 @@ var render = function() {
                           staticClass: "btn btn-success",
                           attrs: { type: "submit" }
                         },
-                        [
-                          _vm._v(
-                            "\n                                Update\n                            "
-                          )
-                        ]
+                        [_vm._v("\n                Update\n              ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -63355,11 +63357,7 @@ var render = function() {
                           staticClass: "btn btn-primary",
                           attrs: { type: "submit" }
                         },
-                        [
-                          _vm._v(
-                            "\n                                Create\n                            "
-                          )
-                        ]
+                        [_vm._v("\n                Create\n              ")]
                       )
                     ])
                   ]
@@ -79779,7 +79777,15 @@ Vue.component("passport-personal-access-tokens", __webpack_require__(/*! ./compo
 Vue.component("not-found", __webpack_require__(/*! ./components/NotFound.vue */ "./resources/js/components/NotFound.vue"));
 var app = new Vue({
   el: "#app",
-  router: router
+  router: router,
+  data: {
+    search: ""
+  },
+  methods: {
+    searchit: function searchit() {
+      Fire.$emit("searching");
+    }
+  }
 });
 
 /***/ }),

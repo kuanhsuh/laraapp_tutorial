@@ -120,5 +120,13 @@ Vue.component(
 Vue.component("not-found", require("./components/NotFound.vue"));
 const app = new Vue({
     el: "#app",
-    router
+    router,
+    data: {
+        search: ""
+    },
+    methods: {
+        searchit() {
+            Fire.$emit("searching");
+        }
+    }
 });
