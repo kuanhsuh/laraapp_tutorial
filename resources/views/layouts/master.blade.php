@@ -40,7 +40,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             placeholder="Search"
                             aria-label="Search"
                             v-model="search"
-                            @keyup.enter="searchit"
+                            @keyup="searchit"
                         />
                         <div class="input-group-append">
                             <button class="btn btn-navbar" @click="searchit">
