@@ -25,7 +25,7 @@ class UserController extends Controller
     {
         if (Gate::allows('isAdmin') || Gate::allows('isAuthor')) {
             // The current user can edit settings
-            return User::latest()->paginate(10);
+            return User::latest()->paginate(3);
         }
     }
 

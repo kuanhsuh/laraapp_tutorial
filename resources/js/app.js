@@ -41,6 +41,8 @@ Vue.use(VueProgressBar, {
 Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
 
+Vue.component("pagination", require("laravel-vue-pagination"));
+
 import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
@@ -111,10 +113,7 @@ Vue.component(
     require("./components/passport/PersonalAccessTokens.vue").default
 );
 
-Vue.component(
-    "not-found",
-    require("./components/NotFound.vue")
-);
+Vue.component("not-found", require("./components/NotFound.vue"));
 const app = new Vue({
     el: "#app",
     router
